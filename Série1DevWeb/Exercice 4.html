@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Adresse valide</title>
+
+</head>
+<body>
+<script>
+function verifier(){
+  var expressionReguliere = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+  if (expressionReguliere.test(document.getElementById(mail).value))
+  {
+    alert("bien saisie");
+  }
+  else{
+    alert("error mail invalid");
+    document.getElementById("mail").focus();
+  }
+  var expressionReguliere = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+  if (expressionReguliere.test(document.getElementById(mail).value))
+  {
+    alert("bien saisie");
+  }
+  else{
+    alert("error mail invalid");
+    document.getElementById("mail").focus();
+  }
+}
+</script>
+Entrez votre adresse email:<input type="email" id="mail" required placeholder="mail@serveur.com"  pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})"> <br>
+<button  type="submit" onclick="verifier()" >verifier</button> <br>
+</body>
+</html>
