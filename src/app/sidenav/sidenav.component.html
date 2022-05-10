@@ -1,0 +1,63 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+        menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+        close
+      </mat-icon>
+    </button>
+    <table  class="ula">
+      <td class="face">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <mat-icon   style="color: white;    font-size: 30px;"  >notifications</mat-icon>
+        </a>
+      </td>
+      <div style="width:30px;" > </div>
+      <td>
+        <a href="#">
+          <img class="avatarpik" src= "https://mspgh.unimelb.edu.au/__data/assets/image/0011/3576098/Placeholder.jpg"/>
+        </a>
+      </td>
+    </table>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+      <img class="avatar mat-elevation-z8" src="https://i.pinimg.com/736x/c7/2f/a1/c72fa12ba4295af9ae4f352f8a1efdd3.jpg" />
+      <h1 class="name">Cini-Seven</h1>
+      <mat-divider></mat-divider>
+      <button mat-button class="menu-button">
+        <mat-icon>dashboard</mat-icon>
+        <span>dashboard</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="formation">
+        <mat-icon>assessment</mat-icon>
+        <span>formation</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>chrome_reader_mode</mat-icon>
+        <span>promotion</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="../employee">
+        <mat-icon>assignment_ind</mat-icon>
+        <span>Employees</span>
+      </button>
+  
+      <button mat-button class="menu-button"  routerLink="../conge">
+        <mat-icon>date_range</mat-icon>
+        <span>Holidays</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+        <button class="message"><mat-icon  class="icon-display"> mail_outline </mat-icon></button>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+

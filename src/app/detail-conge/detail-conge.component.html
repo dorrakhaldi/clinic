@@ -1,0 +1,32 @@
+<p class="pa">Details Holiday</p>
+<div class="detail">
+  <div class="mot po">
+    <pre>Nom & prenom:         </pre>
+  </div>
+  <div class="mot">
+    <pre >DateDebut: {{conge.dateDebut|date : 'yyyy-MM-dd HH:mm:ss'}} </pre>
+  </div>
+  <div class="mot">
+    <pre>DateFin:    {{conge.dateFin|date : 'yyyy-MM-dd HH:mm:ss'}} </pre>
+  </div>
+  <div class="mot">
+    <pre>Type:       {{conge.typeConge}}</pre>
+  </div>
+  <div class="mot">
+    <pre>Raison      {{conge.raison}}</pre>
+  </div>
+ 
+   <div class="mot">
+    <pre>confirmation ChefService:  {{conge.confirmationChefService}}</pre>
+  </div>
+ 
+<div class="buttons">    
+  <button ejs-button class="button button1"    (click)="acceptConge(conge.id)"
+
+  [disabled]="conge.confirmationChefService === false">Accept</button>
+  <button class="button button2"(click)="refuseConge(conge.id)">refuse</button>
+</div>   
+  
+ 
+
+</div>

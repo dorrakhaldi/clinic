@@ -1,0 +1,54 @@
+.pa{
+  color: #8EC3CF;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.detail{
+  background-color: whitesmoke;
+  height: 600px;
+  width: 1000px;
+  border-radius: 60px;
+}
+.element{
+  margin-left: 200px;
+  padding-top:50px;
+
+
+}
+#p{
+  color: black;
+}
+@media  only screen and(max-width:800px)  and (min-width: 730px) {
+  .detail {
+    height: 581px;
+    width: 655px;
+  }
+  .element{
+    margin-left: 115px;
+    padding-top: 50px;
+  }
+
+  @media  only screen and(max-width:720px)  and (min-width: 300px)
+  {
+    .detail {
+      height: 576px;
+      width: 517px;
+    }
+    .element{
+      margin-left: 76px;
+      padding-top: 48px;
+    }
+  }
+  @media  only screen and(max-width:700px)  and (min-width: 100px)
+  {
+    .detail {
+      height: 574px;
+      width: 329px;
+    }
+    .element {
+      margin-left: 49px;
+      padding-top: 48px;
+    }
+
+  }
+}

@@ -1,0 +1,36 @@
+<p class="message">
+  Register for training
+</p>
+<div  class="corner"  >
+  <table class="">
+    <tr>
+      <td class="set">
+        <div class="set">
+          <ul>
+            <li><input autocomplete="off" id="search" placeholder=Nom [(ngModel)]="formation.nom" required minlength="4" appForbiddenName="bob" pattern="[0-9]*" #name="ngModel">
+            </li>
+            <li><input autocomplete="off" id="search" placeholder=Domaine [(ngModel)]="formation.domaine"> </li>
+            <li>
+              <input placeholder="Date Fin" Fin class="textbox-n" type="text" onfocus="(this.type='datetime-local')"  id="searcha"  [(ngModel)]="formation. dateFin" required>
+            </li>
+            <li><input autocomplete="on" type="number" id="search" placeholder="Places disponibles" [(ngModel)]="formation.nbPlaceDisponible" pattern="[1-9]" title="Numbers only, please." min="0" max="99"></li>
+            <span class="validity"></span>
+          </ul>
+        </div>
+      </td>
+      <td  class="set">
+        <div class="set">
+          <ul>
+            <li><input autocomplete="off" id="searcht" placeholder= "Etat du formation"[(ngModel)]="formation.etatFormation" pattern="\d*" title="Numbers only, please."  required="required"> </li>
+            <li><input placeholder="Date Debut" class="textbox-n" type="text" onfocus="(this.type='datetime-local')"  id="searcha" [(ngModel)]="formation.dateDebut"></li>
+            <li><input autocomplete="off" id="searchb" placeholder="Nom du Salle" [(ngModel)]="formation.nomSalle"></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="btt">
+    <button mat-button  style ="color:white; background-color: green;" (click)=" onAdd()" routerLink="../formation" >Apply</button>
+
+  </div>
+</div>

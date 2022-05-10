@@ -1,0 +1,58 @@
+<div  class ="here">
+  <table #TABLE id="table">
+    <tr id="flex" >
+      <th  style="padding-left:58px;">#</th>
+      <th style="padding-left: 71px;">
+        Name
+      </th>
+      <th style="padding-left : 70px">Date</th>
+      <th style="padding-left: 439px">Target</th>
+      <th style="padding-left :  80px">Place</th>
+      <th style="padding-left :  600px; ">
+        <p>Actions</p>
+      </th>
+    <tr>
+      <td colspan="6">
+        <div class="titletab">
+          <p class="phrase">Training</p>
+          <div class="buttontab" (click)=" pdf()">
+            <button class="button" style="padding-bottom: 15px;">   <img class="sizeimgpdf" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Oxygen480-mimetypes-application-pdf.svg"></button>
+            <button class="button"  (click)="onExcel()">
+              <img class="sizeimgxl" src="https://download.logo.wine/logo/Microsoft_Excel/Microsoft_Excel-Logo.wine.png">
+            </button>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td  style="margin-bottom: 20px;">
+        <div class="finaldiv">
+          <button mat-button  class="btn-4" style ="color:white; background-color: #8EC3CF;     border-radius: 16px;
+                  height: 34px;" routerLink="../registre"  >Add</button>
+
+          <div class="search">
+            <input class="input" type="text" placeholder="Search"  [(ngModel)]=" firstname"  (input)="Search()">
+          </div>
+
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<table #TABLE  id ="tabletow">
+  <tr *ngFor="let formation of formationlist " >
+    <td id="td1">{{formationlist.indexOf(formation)+1}}</td>
+    <td id="td2">{{formation.nom}}</td>
+    <td id="td32">{{formation.dateDebut}}</td>
+    <td id="td3">{{formation.domaine}}</td>
+    <td id="td4">{{formation.nomSalle}}</td>
+    <td id="td5">
+      <div class="modifbuttons">
+        <button id ="btn-1"  (click)="onUpdate(formation,formation.id)" ><mat-icon style="font-size: 40px;">create</mat-icon></button>
+        <button id ="btn-2"  (click)= onView(formation)><mat-icon style="font-size: 40px;" >remove_red_eye</mat-icon></button>
+        <button id ="btn-3"> <mat-icon style="font-size: 40px;" (click)="onDelete(formation)">delete</mat-icon></button>
+      </div>
+    </td>
+  </tr>
+</table>
+<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->

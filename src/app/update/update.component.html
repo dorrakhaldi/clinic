@@ -1,0 +1,39 @@
+<p class="message">
+  Register for training
+</p>
+<div  class="corner"   >
+  <table class="">
+    <tr>
+      <td class="set">
+        <div class="set">
+
+          <ul>
+            <li><input autocomplete="off" id="search" placeholder="Nom "[(ngModel)]="formation_to_update.nom" required minlength="4" appForbiddenName="bob" pattern="[0-9]*">
+
+            </li>
+            <li><input autocomplete="off" id="search" placeholder=Domaine [(ngModel)]="formation_to_update.domaine"> </li>
+            <li>
+              <input placeholder="Date Fin" class="textbox-n" type="text" onfocus="(this.type='datetime-local')"  id="searcha"  [(ngModel)]="formation_to_update.dateFin" required>
+            </li>
+            <li><input autocomplete="off" type="number" id="search" placeholder="Place Disponible" [(ngModel)]="formation_to_update.nbPlaceDisponible" pattern="\d*" title="Numbers only, please." min="0" max="99"></li>
+          </ul>
+        </div>
+      </td>
+      <td  class="set">
+        <div class="set">
+          <ul>
+            <li><input autocomplete="off" id="searcht" placeholder="Etat Formation"[(ngModel)]="formation_to_update.etatFormation" required> </li>
+            <li>
+              <input placeholder="Date Debut" class="textbox-n" type="text" onfocus="(this.type='datetime-local')"  id="searcha" [(ngModel)]="formation_to_update.dateDebut">
+            </li>
+            <li><input autocomplete="off" id="searchb" placeholder="Nom Salle" [(ngModel)]="formation_to_update.nomSalle"></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="btt">
+    <button mat-button  style ="color:white; background-color: green;" (click)="onupdate()" routerLink="../formation"  [disabled]="disabled">Apply</button>
+
+  </div>
+</div>

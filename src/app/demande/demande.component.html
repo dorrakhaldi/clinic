@@ -1,0 +1,59 @@
+<p>demande works!</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<div class="modal-header">
+  <h1 class="message" id="modal-basic-title">ASK FOR VACATION </h1>
+</div>
+<div class="modal-body">
+  <form #f="ngForm"  novalidate>
+
+    <!--<div class="form-group">
+      <label for="prenom">FirstName</label>
+      <div class="input-group">
+        <input id="prenom" name="prenom" class="form-control" ngModel type='text' required="required" pattern="[A-Za-z0-9]{2,20}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nom">LastName</label>
+      <div class="input-group">
+        <input id="nom" name="nom" class="form-control" ngModel type='text' required="required" pattern="[A-Za-z0-9]{2,20}">
+      </div>
+    </div>-->
+
+    <div class="form-group">
+      <label for="dateDebut" >STARTDATE</label>
+      <ejs-datetimepicker  id='dateDebut' class="form-control" placeholder='Select a date' format="dd/MM/yyyy" [(ngModel)]='dateDebut'  name="dateDebut" ></ejs-datetimepicker>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="dateFin" >ENDDATE</label>
+      <ejs-datetimepicker  id='dateFin' class="form-control" placeholder='Select a date' format="dd/MM/yyyy" [(ngModel)]='dateFin'  name="dateFin" ></ejs-datetimepicker>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label for="raison">Reason</label>
+      <select name="raison" id="raison" [(ngModel)]="raison">
+        <option value="">--Please choose an option--</option>
+        <option value=" ANNUAL VACATION"> ANNUAL VACATION</option>
+        <option value="SICK DAYS">SICK DAYS</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+    </div>
+    <textarea *ngIf="raison=='OTHER'" id="w3review" name="w3review" rows="4" cols="50" placeholder="please write your reason" required="required"></textarea>
+  </form>
+</div>
+<div class="modal-footer">
+  <button [disabled]="f.invalid" data-dismiss="modal" class="ka "  (click)="onSubmit(f)">
+    <i  > </i>SEND</button>
+  <button type="button" class="btn btn-outline-dark" (click)="vider(f)" >CANCEL</button>
+</div>
+
+

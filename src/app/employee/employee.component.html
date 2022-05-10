@@ -1,0 +1,520 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<h1 class="message" xmlns:itemsPerPage="http://www.w3.org/1999/xhtml" xmlns:totalItems="http://www.w3.org/1999/xhtml"
+    xmlns:itemsPerPage="http://www.w3.org/1999/xhtml" xmlns:paginate="http://www.w3.org/1999/xhtml" xmlns:paginate="http://www.w3.org/1999/xhtml"
+    xmlns:paginate="http://www.w3.org/1999/xhtml">
+  Employee Management</h1>
+<div >
+  <mat-form-field class= "i" appearance="outline">
+    <mat-label> SEARCH</mat-label>
+    <input   matInput placeholder="SEARCH" [(ngModel)]="data">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+<div class="border1 text-center">
+  <button mat-stroked-button class="btn btn-md btn-outline-primary"  color="#C8E7EE" (click)="open(content)" >
+    <mat-icon>add</mat-icon>
+    <i class="fa fa-user" ></i>ADD Employee </button>
+</div>
+<div class="ma">
+  <i class="fa fa-file-pdf-o" style="font-size:36px"  (click)="openPDF()"></i>
+  <i class="fa fa-file-excel-o" style="font-size:40px;color:green" (click)="exportexcel()"></i>
+</div>
+<p>
+
+<div class="container">
+  <table class="table table-bordered table-striped"  id="excel-table" >
+    <thead>
+    <tr>
+      <th> FirstName</th>
+      <th> LastName</th>
+      <th>CIN</th>
+      <th>REGISTRATION NUMBER</th>
+      <th>ROLE</th>
+      <th>AccountStatus</th>
+      <th >Actions</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let emp of Employees  | filter:data   | paginate: { itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+              };
+                let i=index">
+
+      <td ><span>{{emp .prenom}}</span></td>
+      <td ><span>{{emp .nom}}</span></td>
+      <td ><span>{{emp.cin}}</span></td>
+      <td ><span>{{emp.matricule}}</span></td>
+      <td ><span>{{emp .role}}</span></td>
+      <td *ngIf="emp.etatCompte==true" ><span>
+     <mat-icon style="font-size:40px;color:green" >check_circle_outline</mat-icon>
+      </span></td>
+      <td *ngIf="emp.etatCompte==false" ><span>
+         <mat-icon style="font-size:40px;color:red">cancel</mat-icon>
+
+      </span></td>
+
+      <td class="hide">
+        <mat-icon>calendar_today</mat-icon>
+
+        <mat-icon (click)= "openDetails(Editcontent , emp)"> edit </mat-icon>
+
+        <mat-icon (click)="openDetails(Detailcontent , emp)">visibility </mat-icon>
+
+        <mat-icon *ngIf="emp.etatCompte==true" (click)="openDelete(contentDelete ,emp)">notifications_off</mat-icon>
+      </td>
+    </tr >
+    </tbody>
+  </table>
+
+</div>
+<div class="d-flex flex-row-reverse bd-highlight mb-2">
+  <div class="p-2 bd-highlight">
+    <select (change)="onTableSizeChange($event)" class="custom-select">
+      <option *ngFor="let size of tableSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+</div>
+<div class="pag">
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"></pagination-controls>
+</div>
+
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New Employee</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm"  novalidate>
+
+      <div class="form-group">
+        <label for="prenom">FirstName</label>
+        <div class="input-group">
+          <input id="prenom" name="prenom" class="form-control" ngModel type='text' required="required" pattern="[A-Za-z]{2,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nom">LastName</label>
+        <div class="input-group">
+          <input id="nom" name="nom" class="form-control" ngModel type='text' required="required" pattern="[A-Za-z]{2,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cin">Cin</label>
+        <div class="input-group">
+          <input id="cin" name="cin" class="form-control" ngModel type='text' required="required" minlength="8" maxlength="8" pattern="^[0-1][0-9]{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="matricule">Registration Number</label>
+        <div class="input-group">
+          <input id="matricule" name="matricule" class="form-control" ngModel type='text' required="required" pattern="{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <div class="input-group">
+          <input id="Password" name="Password" class="form-control" ngModel type='password' required="required" pattern="{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">ADDRESS</label>
+        <div class="input-group">
+          <input id="adresse" name="adresse" class="form-control" ngModel type='text' required="required" pattern="{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">PHONENUMBER</label>
+        <div class="input-group">
+          <input id="phoneNumber" name="phoneNumber" class="form-control" ngModel type='text' required="required" pattern="[0-9]{2,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">EMAIL</label>
+        <div class="input-group">
+          <input id="email" name="email" class="form-control" ngModel type='email' placeholder="exemple@example.com" required="required" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateNaissance" >BIRTHDATE</label>
+        <ejs-datetimepicker  id='dateNaissance' class="form-control" placeholder='Select a date' format="dd/MM/yyyy" [(ngModel)]='dateNaissance'  name="dateNaissance" ></ejs-datetimepicker>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="gender">GENDER</label> <br>
+
+        <div>
+          <input type="radio" id="gender" name="gender" [(ngModel)]="gender" value=female required="required" >
+          <label for="gender"  id="lb" > FEMALE</label>
+          <input type="radio" id="gender1" name="gender" [(ngModel)]="gender" value=Male required="required">
+          <label for="gender1"> MALE </label><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="etatCompte1">COMPTE STATUS</label>
+
+        <div>
+          <input type="radio" id="etatCompte1" name="etatCompte" [(ngModel)]="ACTIF" [value]=true required="required" >
+          <label for="etatCompte1"  id="lb1" > ACTIF</label>
+          <input type="radio" id="non dispo1" name="etatCompte" [(ngModel)]="ACTIF" [value]=false required="required">
+          <label for="etatCompte1"> DESACTIF </label><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="role">ROLE</label>
+        <select name="role" id="role" [(ngModel)]="role">
+          <option value="">--Please choose an option--</option>
+          <option value=" PNEUMOLOGY"> PNEUMOLOGY</option>
+          <option value="PSYCHIATRY">PSYCHIATRY</option>
+          <option value="RADIOLOGY">RADIOLOGY</option>
+          <option value="RADIOTHERAPY">RADIOTHERAPY</option>
+          <option value="UROLOGY">UROLOGY</option>
+          <option value="ODONTOLOGY">ODONTOLOGY</option>
+          <option value=" ONCOLOGY"> ONCOLOGY</option>
+          <option value="OBSTETRICS">OBSTETRICS</option>
+          <option value="ORTHOPEDICS">ORTHOPEDICS</option>
+          <option value="ENT_RHINO_LARYNGOLOGY">ENT_RHINO_LARYNGOLOGY</option>
+          <option value="NEONTOLOGY">NEONTOLOGY</option>
+          <option value="NEPHROLOGY">NEPHROLOGY</option>
+          <option value="PREVENTIVE">PREVENTIVE</option>
+          <option value="NEONTOLOGY">NEONTOLOGY</option>
+          <option value="PHYSICAL">PHYSICAL</option>
+          <option value="PEDIATRICS">PEDIATRICS</option>
+          <option value="ALLERGOLOGY">ALLERGOLOGY</option>
+          <option value="PLASTIC_AND_RECONSTRUCTIVE_SURGERY">PLASTIC_AND_RECONSTRUCTIVE_SURGERY</option>
+          <option value="HEART_SURGERY">HEART_SURGERY</option>
+          <option value="GENERAL_SERGERY">GENERAL_SERGERY</option>
+          <option value="PEDIATRIC_SERGERY">PEDIATRIC_SERGERY</option>
+          <option value="THORACIC_SERGERYL">THORACIC_SERGERY</option>
+          <option value="VASCULAR_SERGERY">VASCULAR_SERGERY</option>
+          <option value=" NEUROSURGERY"> NEUROSURGERY</option>
+          <option value="DERMATOLOGY">DERMATOLOGY</option>
+          <option value="ENDOCRINOLOGY">ENDOCRINOLOGY</option>
+          <option value="GYNECOLOGY">GYNECOLOGY</option>
+          <option value="HEPATOLOGY">HEPATOLOGY</option>
+          <option value="HEMATOLOGY">HEMATOLOGY</option>
+          <option value="GERIATRICS">GERIATRICS</option>
+          <option value="GASTROENTEROLOGY">GASTROENTEROLOGY</option>
+          <option value="INFECTIOUS_DISEASE">INFECTIOUS_DISEASE</option>
+          <option value="ACUTE_MEDICINE">ACUTE_MEDICINE</option>
+          <option value="NUCLEAR_MEDICINE">NUCLEAR_MEDICINE</option>
+          <option value="FORMATEUR">FORMATEUR</option>
+          <option value="PARAMED">PARAMED</option>
+          <option value="NURSE">NURSE</option>
+          <option value="PALLIATIVE_MEDICINE">PALLIATIVE_MEDICINE</option>
+
+        </select>
+      </div>
+      <div class="border text-center">
+        <button [disabled]="f.invalid" data-dismiss="modal" class="btn btn-info" (click)="onSubmit(f)">
+          <i class="fa fa-edit"> </i>Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
+
+
+
+<ng-template #Detailcontent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" >Detail Employee</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div>
+      <i class="fa fa-file-pdf-o" style="font-size:36px"  (click)="openPDF()"></i>
+
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <fieldset [disabled]="true">
+
+        <div class="form-group">
+          <label for="prenom">FirstName</label>
+          <div class="input-group">
+            <input formControlName="prenom"  class="form-control"   required="required" pattern="[A-Za-z]{1,20}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nom">LastName</label>
+          <div class="input-group">
+            <input formControlName="nom"  class="form-control"   required="required" pattern="[A-Za-z]{1,20}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cin">Cin</label>
+          <div class="input-group">
+            <input formControlName="cin" class="form-control"   required="required" minlength="8" maxlength="8" pattern="[0-9]">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="matricule">Registration Number</label>
+          <div class="input-group">
+            <input formControlName="matricule" class="form-control"   required="required" pattern="{1,20}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="adresse">ADDRESS</label>
+          <div class="input-group">
+            <input formControlName="adresse" class="form-control"   required="required" pattern="{1,20}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">PHONENUMBER</label>
+          <div class="input-group">
+            <input formControlName="phoneNumber"  class="form-control"  required="required" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">EMAIL</label>
+          <div class="input-group">
+            <input formControlName="email"  class="form-control"   required="required" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label >EmailConfirmed</label>
+
+          <div>
+            <input formControlName="emailConfirmed"  class="form-control"   required="required" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label >BIRTHDATE</label>
+          <div class="input-group">
+            <ejs-datetimepicker formControlName="dateNaissance" id='datetimepicker11' placeholder='Select a date'  format="dd/MM/yyyy" ></ejs-datetimepicker>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label >HIRING DATE</label>
+          <div class="input-group">
+
+            <ejs-datetimepicker formControlName="dateEmploi" id='datetimepicker2' placeholder='Select a date'   format="dd/MM/yyyy" ></ejs-datetimepicker>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <div>
+            <input formControlName="gender"  class="form-control"   required="required" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="etatCompte1">COMPTE STATUS</label>
+
+          <div>
+            <input formControlName="etatCompte"  class="form-control"   required="required" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="role">ROLE</label>
+          <div>
+            <input formControlName="role"  class="form-control"  required="required" >
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
+
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h2>Are you sure you want to desactive this record.</h2>
+    <div class="border text-center" >
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+        <i class="fa fa-edit"> </i>Yes, Desactive!</button>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+
+
+
+
+
+<ng-template #Editcontent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" >Edit Employee</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+
+
+      <div class="form-group">
+        <label for="prenom">FirstName</label>
+        <div class="input-group">
+          <input formControlName="prenom"  class="form-control"   type="text" required="required" pattern="[A-Za-z]{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nom">LastName</label>
+        <div class="input-group">
+          <input formControlName="nom"  class="form-control"   type="text" required="required" pattern="[A-Za-z]{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cin">Cin</label>
+        <div class="input-group">
+          <input formControlName="cin" class="form-control"   type="text"  required="required" pattern="[0-9]{1,20}" minlength="8" maxlength="8">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="matricule">Registration Number</label>
+        <div class="input-group">
+          <input formControlName="matricule" class="form-control"   type="text" required="required" pattern="{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="adresse">ADDRESS</label>
+        <div class="input-group">
+          <input formControlName="adresse" class="form-control"  type="text" required="required" pattern="{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">PHONENUMBER</label>
+        <div class="input-group">
+          <input formControlName="phoneNumber"  class="form-control"  type='text' required="required" pattern="[0-9]{2,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">EMAIL</label>
+        <div class="input-group">
+          <input formControlName="email"  class="form-control"   type="email" required="required" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})">
+        </div>
+      </div>
+      <div class="form-group">
+        <label >EmailConfirmed</label>
+
+        <div>
+          <input formControlName="emailConfirmed"  class="form-control"  type="boolean"  pattern="{1,20}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label >BIRTHDATE</label>
+        <div class="input-group">
+          <ejs-datetimepicker formControlName="dateNaissance" id='datetimepicker1' placeholder='Select a date'   format="dd/MM/yyyy" ></ejs-datetimepicker>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <div>
+          <input formControlName="gender" type="radio"    id="gender11"  value='female' required="required" [checked]="gender=='female'">
+          <label id="lb11" for="gender"> female </label>
+          <input formControlName="gender" type="radio"     id="gender22"   value='male' required="required" [checked]="gender=='male'">
+          <label for="gender"> Male  </label><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="etatCompte1">AccountStatus</label>
+        <div>
+          <input formControlName="etatCompte"   type="radio" id="etatCompte"   [value]=true required="required" [checked]="ACTIF==true">
+          <label id="lb22" for="etatCompte"> ACTIF </label>
+          <input  formControlName="etatCompte"   type="radio" id="etatCompte2"  [value]=false required="required" [checked]="ACTIF==false">
+          <label for="etatCompte2"> DESACTIF </label><br>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="role1" required="required">ROLE</label>
+        <select formControlName="role"  id="role1"  required="required">
+          <option value="">--Please choose an option--</option>
+          <option value=" PNEUMOLOGY"> PNEUMOLOGY</option>
+          <option value="PSYCHIATRY">PSYCHIATRY</option>
+          <option value="RADIOLOGY">RADIOLOGY</option>
+          <option value="RADIOTHERAPY">RADIOTHERAPY</option>
+          <option value="UROLOGY">UROLOGY</option>
+          <option value="ODONTOLOGY">ODONTOLOGY</option>
+          <option value=" ONCOLOGY"> ONCOLOGY</option>
+          <option value="OBSTETRICS">OBSTETRICS</option>
+          <option value="ORTHOPEDICS">ORTHOPEDICS</option>
+          <option value="ENT_RHINO_LARYNGOLOGY">ENT_RHINO_LARYNGOLOGY</option>
+          <option value="NEONTOLOGY">NEONTOLOGY</option>
+          <option value="NEPHROLOGY">NEPHROLOGY</option>
+          <option value="PREVENTIVE">PREVENTIVE</option>
+          <option value="NEONTOLOGY">NEONTOLOGY</option>
+          <option value="PHYSICAL">PHYSICAL</option>
+          <option value="PEDIATRICS">PEDIATRICS</option>
+          <option value="ALLERGOLOGY">ALLERGOLOGY</option>
+          <option value="PLASTIC_AND_RECONSTRUCTIVE_SURGERY">PLASTIC_AND_RECONSTRUCTIVE_SURGERY</option>
+          <option value="HEART_SURGERY">HEART_SURGERY</option>
+          <option value="GENERAL_SERGERY">GENERAL_SERGERY</option>
+          <option value="PEDIATRIC_SERGERY">PEDIATRIC_SERGERY</option>
+          <option value="THORACIC_SERGERYL">THORACIC_SERGERY</option>
+          <option value="VASCULAR_SERGERY">VASCULAR_SERGERY</option>
+          <option value=" NEUROSURGERY"> NEUROSURGERY</option>
+          <option value="DERMATOLOGY">DERMATOLOGY</option>
+          <option value="ENDOCRINOLOGY">ENDOCRINOLOGY</option>
+          <option value="GYNECOLOGY">GYNECOLOGY</option>
+          <option value="HEPATOLOGY">HEPATOLOGY</option>
+          <option value="HEMATOLOGY">HEMATOLOGY</option>
+          <option value="GERIATRICS">GERIATRICS</option>
+          <option value="GASTROENTEROLOGY">GASTROENTEROLOGY</option>
+          <option value="INFECTIOUS_DISEASE">INFECTIOUS_DISEASE</option>
+          <option value="ACUTE_MEDICINE">ACUTE_MEDICINE</option>
+          <option value="NUCLEAR_MEDICINE">NUCLEAR_MEDICINE</option>
+          <option value="FORMATEUR">FORMATEUR</option>
+          <option value="PARAMED">PARAMED</option>
+          <option value="NURSE">NURSE</option>
+          <option value="PALLIATIVE_MEDICINE">PALLIATIVE_MEDICINE</option>
+
+        </select>
+      </div>
+      <div class="border text-center"> <button [disabled]="editForm.invalid" data-dismiss="modal" class="btn btn-info" (click)="onSave()">
+        <i class="fa fa-edit"> </i>Save Changes</button> </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+

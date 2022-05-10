@@ -1,0 +1,124 @@
+.mot{
+  color: rgb(161, 159, 159);
+padding-left: 150px;
+font-size: 20px;
+padding-top: 20px;
+}
+.po{padding-top: 30px;
+}
+.pa{
+  color: #8EC3CF;
+  text-align: center;
+  padding: 30px;
+  font-size: 40px;
+  
+}
+
+.mat-icon{
+  border:none ;
+  background-color: transparent;
+}
+.detail{
+  margin-left: 230px;
+  align-content: center;
+  background-color: whitesmoke;
+  height: 430px;
+  width: 800px;
+  border-radius: 60px;
+}
+.element{
+  margin-left: 200px;
+  padding-top:50px;
+
+
+}
+#p{
+  color: black;
+}
+@media  only screen and(max-width:800px)  and (min-width: 730px) {
+  .detail {
+    height: 581px;
+    width: 655px;
+  }
+  .element{
+    margin-left: 100px;
+    color: grey;
+  }
+  
+
+  }
+  @media  only screen and(max-width:720px)  and (min-width: 300px)
+  {
+    .detail {
+      height: 576px;
+      width: 517px;
+    }
+    .element{
+      margin-left: 76px;
+      padding-top: 48px;
+    }
+  }
+  @media  only screen and(max-width:700px)  and (min-width: 100px)
+  {
+    .detail {
+      height: 574px;
+      width: 329px;
+    }
+    .element {
+      margin-left: 49px;
+      padding-top: 48px;
+    }
+
+
+
+
+  }
+
+  .button {
+    width: 25;
+    height: 20;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 20%;
+  }
+  
+  .button1 {
+    padding: 14px 25px;
+
+    background-color: white; 
+    color: black; 
+    border: 2px solid #9fa19f;
+   
+  }
+  
+  .button1:hover {
+    background-color: #9fa19f;
+    color: white;
+   
+  }
+  
+  .button2 {
+    padding: 14px 28px;
+
+    background-color: white; 
+    color: black; 
+    border: 2px solid #DA544D
+    ;
+  }
+  
+  .button2:hover {
+    background-color: #DA544D
+    ;
+    color: white;
+  }
+  .buttons{
+    margin-left: 450px;
+  }

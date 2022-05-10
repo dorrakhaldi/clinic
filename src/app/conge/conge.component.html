@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" />
+<link href="https://cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<div style="display: flex;
+justify-content: space-evenly;padding-top: 50px;">
+  <div class="col-lg-9 message">
+    <h1> Holidays </h1>
+  </div>
+  <div style="display: flex;
+       justify-content: space-evenly;">
+    <button mat-stroked-button class="col-lg-9 btn btn-md btn-outline-primary" color="#C8E7EE"
+      (click)="openFormulaire()">
+      <mat-icon>add</mat-icon>
+      Ask For Vacation
+    </button> 
+    <div class="col-lg-9">
+      <button class="pdfxl" (click)="pdf()">
+        <mat-icon>picture_as_pdf</mat-icon>
+      </button>
+      <button class="pdfxl" (click)="onExcel()">
+        <mat-icon>note_add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <table class="table table-bordered table-striped"  #TABLE id="excel_table">
+    <thead>
+      <tr>
+        <th> Date Debut</th>
+        <th> Date Fin</th>
+        <th>Type</th>
+        <th>Raison</th>
+        <th>Confirmation Chef Service</th>
+        <th>Confirmation RH</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let conge of conges" style="
+                  padding-top: 0px;
+                  padding-bottom: 0px;
+                  height: 22px;">
+        <td ><span>{{conge.dateDebut|date:'yyyy-MM-dd HH:mm:ss'}}</span></td>
+        <td ><span>{{conge.dateFin|date:'yyyy-MM-dd HH:mm:ss'}}</span></td>
+        <td ><span >{{conge.typeConge}}</span></td>
+        <td ><span>{{conge.raison}}</span></td>
+        <td ><span>{{conge.confirmationChefService}}</span></td>
+        <td ><span>{{conge.confirmationRh}}</span></td>
+        <td>
+          <button mat-icon-button>
+            <span mat-icon-button class="material-icons"  (click)="detailConge(conge)">
+              visibility
+            </span></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

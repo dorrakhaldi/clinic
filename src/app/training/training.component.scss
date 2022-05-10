@@ -1,0 +1,212 @@
+.here{
+
+	display: flex;
+    width: 1775px;
+    height:223px;
+    background-color: #C4C4C4;
+    margin-top: -370px;
+    margin-left: 140px;
+
+}
+table {
+  font-family: arial, sans-serif;
+  font-size: 20px;
+  border-spacing: 10px;
+  border-collapse: separate;
+  position: fixed;
+}
+
+#flex{
+  color: #8EC3CF;
+  margin-left: 85px;
+  margin-top: 32px;
+}
+
+.phrase{
+  color :#8EC3CF;
+  font-size:40px;
+  margin-left: 80px;
+  margin-top: 20px;
+
+}
+.pdf{
+  border-radius: 50%;
+  height: 20px;
+  width: 40px;
+}
+#tr{
+  margin-top: 100px;
+}
+.there{
+  display: inline;
+}
+
+
+.divt{
+  height: 50px;
+  display: inline;
+  width: 100%;
+  background-color: black;
+}
+.titletab{
+  display: flex;
+  justify-content: space-between;
+}
+.buttontab{
+  display: inline;
+  background-color: #C4C4C4;
+  margin-left: 200px;
+  display: inline-block;
+}
+.pdf{
+  height: 100%;
+  width: 100%;
+  background: cover;
+  font-size:97px;
+  margin-bottom: 10px;
+}
+#tabletow{
+
+	font-family: arial, sans-serif;
+    font-size: 20px;
+    border-spacing: 10px;
+	margin-top: 20px;
+    margin-left: 108px;
+    border-collapse: separate;
+	display: inline;
+}
+//les deux  buttons pdf et  excel 
+
+.button{
+  height: 100px;
+  border: none;
+  width: 100px;
+
+  background-color: transparent;
+}
+.sizeimgxl{
+  height: 60%;
+  width: 80%;
+  background: cover;
+  text-align: center;
+  margin-left:60px;
+
+}
+.sizeimgpdf{
+  height: 60%;
+  width: 70%;
+  margin-left:99px;
+  background: cover;
+  text-align: center;
+
+}
+//fin pdf excel
+#tabletow {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  color: black;
+  width: 1752px;
+  margin-left:155px;
+  border:1px solid black;
+  position: fixed;
+
+}
+#td1{
+  width: 11px;
+  padding-left: 55px;
+
+
+}
+#td2{
+  width: 76px;
+  padding-left: 55px;
+}
+#td3{
+  width:161px;
+  display: inline;
+  padding-left: 200px;
+}
+#td32{
+  width:161px;
+  display: inline;
+  padding-left : 70px
+
+}
+#td4{
+  width:234px;
+  padding-left:80px;
+}
+
+#td5{
+  width:70px;
+  display: inline;
+  padding-left:360px;
+}
+//les 3 buttons view , delete , update
+.modifbuttons{
+  display: inline;
+  width: 100px;
+  margin-left: 20px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+}
+#btn-1{
+  padding-right: 20px;
+  background: none;
+  border: none;
+}
+#btn-2{
+  padding-right: 20px;
+  background: none;
+  border: none;
+}
+#btn-3{
+  padding-right: 20px;
+  background: none;
+  border: none;
+}
+
+
+//Ssearch button
+
+.search{
+  height: 50px;
+  width: 100px;
+  border-radius: 25px;
+  display: inline;
+
+}
+.Sbtn{
+  padding-left: 10px;
+}
+.input{
+  border-radius: 54px;
+  height: 29px;
+  width: 263px;
+  margin-left: 58px;
+  padding-left: 32px;
+  align-content: tra;
+  border: none;
+  background-color: #DBDADA;
+  position: absolute;
+
+}
+.finaldiv{
+  display: inline-flex;
+  width: 38px;
+
+}
+.btn-6{
+  margin-left: 50px;
+}
+// for paginator
+.ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before {
+  content: '«';
+  padding: 17.1875rem 0.625rem;
+  color: #cacaca;
+  cursor: default;
+  display: inline-block;
+  margin-right: 52.5rem;
+  padding-top: 281px;
+}
